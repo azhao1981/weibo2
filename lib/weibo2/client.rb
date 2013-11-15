@@ -71,10 +71,10 @@ module Weibo2
     end
     
     # Whether or not the client is authorized
-    #
+    # weibo now return expires_at is not right and allow be 157680000, ignore it
     # @return [Boolean]
     def is_authorized?
-      !!token && token.expires? && !token.expired?
+      !!token && token.expires?
     end
 
     # Initializes an AccessToken by making a request to the token endpoint
