@@ -74,7 +74,7 @@ module Weibo2
     #
     # @return [Boolean]
     def is_authorized?
-      !!token && !token.expired?
+      !!token && token.expires? && !token.expired?
     end
 
     # Initializes an AccessToken by making a request to the token endpoint
