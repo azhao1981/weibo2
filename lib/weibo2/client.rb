@@ -88,7 +88,7 @@ module Weibo2
         uid   = self.signed_request.unsigned_request['user_id']
         token = self.token.token
         res   = self.users.show(uid: uid, access_toke: token)
-        return user_info = JSON.parse res.response.body
+        return JSON.parse(res.response.body)
       rescue Exception => e
         return {}
       end
