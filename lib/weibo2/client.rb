@@ -77,6 +77,23 @@ module Weibo2
       !!token && token.expires?
     end
 
+    # Insided App client 
+    # get user info 
+    # use user_id and token
+    # EG:
+    # client = Weibo2::Client.from_signed_request(params[:signed_request])
+    # client.get_user
+    def get_user
+      begin
+        uid   = self.signed_request.unsigned_request['user_id']
+        token = self.token.token
+        res   = self.users.show(uid: uid, access_toke: token)
+        return user_info = JSON.parse res.response.body
+      rescue Exception => e
+        return {}
+      end
+    end
+
     # Initializes an AccessToken by making a request to the token endpoint
     #
     # @param [Hash] params a Hash of params for the token endpoint
